@@ -1,0 +1,33 @@
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="user">
+        <span nz-icon nzType="user"></span>
+        <span>Users</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+
+      <div class="notification">
+        <nz-badge [nzCount]="5">
+          <i class="fa-solid fa-bell"></i>
+        </nz-badge>
+        <i class="fa-solid fa-circle-user"></i>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

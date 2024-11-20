@@ -1,0 +1,23 @@
+<form nz-form nzLabelAlign="left" nzNoColon [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Full Name</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="fullName" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="5">NIC</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="nic" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Contact No</nz-form-label>
+    <nz-form-control>
+      <input nz-input type="tel" formControlName="contactDetails" />
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">
+    Save
+  </button>
+</form>
