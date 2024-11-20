@@ -20,6 +20,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'program',
+        loadChildren: () =>
+          import('./_layout/features/programs/programs.module').then(
+            (m) => m.ProgramsModule
+          ),
+      },
+      {
         pathMatch: 'full',
         path: '',
         redirectTo: 'user',

@@ -29,9 +29,11 @@
         <td>{{ data.fullName }}</td>
         <td>{{ data.nic }}</td>
         <td>{{ data.contactDetails }}</td>
-        <td>{{ data.registrationDate }}</td>
+        <td>{{ data.registrationDate | date : "medium" }}</td>
         <td>
-          <a><i class="fa-solid fa-trash"></i></a>
+          <a (click)="deleteUser(data.memberId)"
+            ><i class="fa-solid fa-trash"></i
+          ></a>
         </td>
       </tr>
     </tbody>

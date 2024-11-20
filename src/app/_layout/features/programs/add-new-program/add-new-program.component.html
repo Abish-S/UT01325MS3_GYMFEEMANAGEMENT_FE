@@ -1,0 +1,24 @@
+<form nz-form nzLabelAlign="left" nzNoColon [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Name</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="programName" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Price</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="price" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Description</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="description" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">
+    Save
+  </button>
+</form>

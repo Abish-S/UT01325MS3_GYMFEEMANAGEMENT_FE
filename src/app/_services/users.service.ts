@@ -17,4 +17,9 @@ export class UsersService {
     const URL = environment.GET_ALL_USERS;
     return this.http.get<user[]>(URL);
   }
+
+  deleteUser(id: string) {
+    const URL = environment.DELETE_USER + id;
+    return this.http.delete(URL);
+  }
 }

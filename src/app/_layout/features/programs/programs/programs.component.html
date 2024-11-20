@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="title">Training Programs</div>
+  <div nz-row nzJustify="space-between">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <span nz-icon nzType="search"></span>
+    </ng-template>
+    <button nz-button nzType="primary" (click)="openAddProgram()">
+      Add New Training Program
+    </button>
+  </div>
+  <br />
+  <nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Training Program ID</th>
+        <th>Program Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.trainingProgramId }}</td>
+        <td>{{ data.programName }}</td>
+        <td>{{ data.price | number : ".2-2" }}</td>
+        <td>{{ data.description }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
