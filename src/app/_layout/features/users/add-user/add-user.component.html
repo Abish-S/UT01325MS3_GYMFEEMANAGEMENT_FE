@@ -17,6 +17,23 @@
       <input nz-input type="tel" formControlName="contactDetails" />
     </nz-form-control>
   </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Training Programs</nz-form-label>
+    <nz-form-control>
+      <nz-select
+        nzMode="multiple"
+        nzShowSearch
+        nzAllowClear
+        [nzShowArrow]="true"
+      >
+        <nz-option
+          *ngFor="let item of programList"
+          [nzLabel]="item.programName"
+          [nzValue]="item.trainingProgramId"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
   <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">
     Save
   </button>

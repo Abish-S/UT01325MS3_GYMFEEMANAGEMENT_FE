@@ -27,6 +27,7 @@ export class UserComponent {
       nzContent: AddUserComponent,
       nzFooter: null,
       nzCentered: true,
+      nzWidth: 700,
     });
     modal.afterClose.subscribe((res) => {
       this.getAllUsers();

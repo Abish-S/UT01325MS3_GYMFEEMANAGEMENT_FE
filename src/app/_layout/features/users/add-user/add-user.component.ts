@@ -4,6 +4,8 @@ import { UsersService } from '../../../../_services/users.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { MyValidators } from '../../../../_validators/custom-validator';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ProgramsService } from '../../../../_services/programs.service';
+import { trainingProgram } from '../../../../_models/trainingProgram';
 
 @Component({
   selector: 'app-add-user',
@@ -13,21 +15,33 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class AddUserComponent {
   formGroup!: FormGroup;
   loading = false;
+  programList: trainingProgram[] = [];
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
     private modalRef: NzModalRef,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private programService: ProgramsService
   ) {
     this.initForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllProgram();
+  }
   initForm() {
     this.formGroup = this.fb.group({
       fullName: ['', [MyValidators.customRequired('Full Name')]],
       nic: ['', [MyValidators.customRequired('NIC')]],
       contactDetails: ['', [MyValidators.customRequired('Contact No')]],
+    });
+  }
+
+  getAllProgram() {
+    this.programService.getAllTrainingPrograms().subscribe({
+      next: (res) => {
+        this.programList = res;
+      },
     });
   }
 
