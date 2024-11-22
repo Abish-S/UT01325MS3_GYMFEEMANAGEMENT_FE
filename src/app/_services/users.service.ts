@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { user, userRequest } from '../_models/user';
+import { user, userRequest, userResponse } from '../_models/user';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class UsersService {
 
   addUser(data: userRequest) {
     const URL = environment.ADD_USER;
-    return this.http.post(URL, data);
+    return this.http.post<userResponse>(URL, data);
   }
   getUsers() {
     const URL = environment.GET_ALL_USERS;

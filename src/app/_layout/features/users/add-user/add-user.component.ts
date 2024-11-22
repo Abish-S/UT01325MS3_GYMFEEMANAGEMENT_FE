@@ -16,6 +16,21 @@ export class AddUserComponent {
   formGroup!: FormGroup;
   loading = false;
   programList: trainingProgram[] = [];
+
+  feeTypes = [
+    {
+      value: 1,
+      label: 'Registration',
+    },
+    {
+      value: 2,
+      label: 'Monthly',
+    },
+    {
+      value: 3,
+      label: 'Annual',
+    },
+  ];
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
@@ -34,6 +49,15 @@ export class AddUserComponent {
       fullName: ['', [MyValidators.customRequired('Full Name')]],
       nic: ['', [MyValidators.customRequired('NIC')]],
       contactDetails: ['', [MyValidators.customRequired('Contact No')]],
+      selectedTrainingProgramIds: [
+        null,
+        [MyValidators.customRequired('Training Programs')],
+      ],
+      payment: this.fb.group({
+        amount: [0],
+        paymentType: [1, [MyValidators.customRequired('Fee Type')]],
+        paymentDate: [new Date()],
+      }),
     });
   }
 
@@ -63,7 +87,7 @@ export class AddUserComponent {
       this.userService.addUser(this.formGroup.value).subscribe({
         next: (res) => {
           this.loading = false;
-          this.notification.success('Success', 'User saved successfully');
+          this.notification.success('Success', res.message);
           this.modalRef.close();
         },
         error: () => {

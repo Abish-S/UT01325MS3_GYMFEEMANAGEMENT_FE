@@ -27,6 +27,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'fees',
+        loadChildren: () =>
+          import('./_layout/features/fees/fees.module').then(
+            (m) => m.FeesModule
+          ),
+      },
+      {
         pathMatch: 'full',
         path: '',
         redirectTo: 'user',

@@ -1,0 +1,23 @@
+<form nz-form nzLabelAlign="left" nzNoColon [formGroup]="formGroup">
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Member ID</nz-form-label>
+    <nz-form-control>
+      <nz-select nzShowSearch nzAllowClear [nzShowArrow]="true">
+        <nz-option
+          *ngFor="let item of userList"
+          [nzLabel]="item.memberId + ' - ' + item.fullName"
+          [nzValue]="item.memberId"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzSpan="5">Payment Date</nz-form-label>
+    <nz-form-control>
+      <nz-date-picker nzMode="month"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary">Pay</button>
+</form>

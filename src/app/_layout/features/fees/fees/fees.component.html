@@ -1,14 +1,14 @@
 <div class="content">
-  <div class="title">Users</div>
-  <div nz-row nzJustify="space-between">
-    <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
-    </nz-input-group>
-    <ng-template #suffixIconSearch>
-      <span nz-icon nzType="search"></span>
-    </ng-template>
-    <button nz-button nzType="primary" (click)="openAddUser()">
-      Add new user
+  <div class="title">Fee Management</div>
+  <div nz-row nzJustify="end">
+    <!-- <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="input search text" />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <span nz-icon nzType="search"></span>
+      </ng-template> -->
+    <button nz-button nzType="primary" (click)="makePayment()">
+      Make Payment
     </button>
   </div>
   <br />
@@ -36,11 +36,7 @@
             >{{ program.programName }} <br
           /></ng-container>
         </td>
-        <td>
-          <a (click)="deleteUser(data.memberId)"
-            ><i class="fa-solid fa-trash"></i
-          ></a>
-        </td>
+        <td></td>
       </tr>
     </tbody>
   </nz-table>

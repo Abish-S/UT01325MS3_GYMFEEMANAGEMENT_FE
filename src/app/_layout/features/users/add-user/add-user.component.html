@@ -22,6 +22,7 @@
     <nz-form-control>
       <nz-select
         nzMode="multiple"
+        formControlName="selectedTrainingProgramIds"
         nzShowSearch
         nzAllowClear
         [nzShowArrow]="true"
@@ -34,6 +35,16 @@
       </nz-select>
     </nz-form-control>
   </nz-form-item>
+  <!-- <nz-form-item formGroupName="payment">
+    <nz-form-label nzSpan="5">Fee Type</nz-form-label>
+    <nz-form-control>
+      <nz-radio-group formControlName="paymentType">
+        @for (o of feeTypes; track o.value) {
+        <label nz-radio [nzValue]="o.value">{{ o.label }}</label>
+        }
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item> -->
   <button nz-button nzType="primary" (click)="submit()" [nzLoading]="loading">
     Save
   </button>
