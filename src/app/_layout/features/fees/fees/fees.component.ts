@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { MakePaymentComponent } from '../make-payment/make-payment.component';
+import { PaymentService } from '../../../../_services/payment.service';
+import { getAllPaymentResponse } from '../../../../_models/payment';
 
 @Component({
   selector: 'app-fees',
@@ -8,9 +10,15 @@ import { MakePaymentComponent } from '../make-payment/make-payment.component';
   styleUrl: './fees.component.sass',
 })
 export class FeesComponent {
-  listOfData: any[] = [];
-  constructor(private modalService: NzModalService) {}
+  listOfData: getAllPaymentResponse[] = [];
 
+  constructor(
+    private modalService: NzModalService,
+    private paymentService: PaymentService
+  ) {}
+  ngOnInit() {
+    this.getAllPayments();
+  }
   makePayment() {
     const modal = this.modalService.create({
       nzTitle: 'Make Payment',
@@ -18,6 +26,17 @@ export class FeesComponent {
       nzFooter: null,
       nzCentered: true,
       nzWidth: 700,
+    });
+    modal.afterClose.subscribe((res) => {
+      this.getAllPayments();
+    });
+  }
+
+  getAllPayments() {
+    this.paymentService.getAllPayments().subscribe({
+      next: (res) => {
+        this.listOfData = res;
+      },
     });
   }
 }

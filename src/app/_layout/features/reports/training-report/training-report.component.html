@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="title">Training Program Report</div>
+
+  <br />
+  <nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Program ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Enrolled Members</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.trainingProgramId }}</td>
+        <td>{{ data.programName | titlecase }}</td>
+        <td>{{ data.price | number : ".2-2" }}</td>
+        <td>{{ data.description }}</td>
+        <td>{{ data.totalMembers }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

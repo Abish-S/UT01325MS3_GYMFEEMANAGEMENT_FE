@@ -54,7 +54,7 @@ export class AddUserComponent {
         [MyValidators.customRequired('Training Programs')],
       ],
       payment: this.fb.group({
-        amount: [0],
+        amount: [5000],
         paymentType: [1, [MyValidators.customRequired('Fee Type')]],
         paymentDate: [new Date()],
       }),

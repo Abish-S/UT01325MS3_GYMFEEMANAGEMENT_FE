@@ -34,6 +34,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'report',
+        loadChildren: () =>
+          import('./_layout/features/reports/reports.module').then(
+            (m) => m.ReportsModule
+          ),
+      },
+      {
         pathMatch: 'full',
         path: '',
         redirectTo: 'user',

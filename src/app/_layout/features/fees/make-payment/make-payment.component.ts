@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UsersService } from '../../../../_services/users.service';
 import { user } from '../../../../_models/user';
+import { PaymentService } from '../../../../_services/payment.service';
+import { MyValidators } from '../../../../_validators/custom-validator';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-make-payment',
@@ -9,7 +12,6 @@ import { user } from '../../../../_models/user';
   styleUrl: './make-payment.component.sass',
 })
 export class MakePaymentComponent {
-  formGroup!: FormGroup;
   userList: user[] = [];
   feeTypes = [
     {
@@ -21,14 +23,42 @@ export class MakePaymentComponent {
       label: 'Annual',
     },
   ];
-  constructor(private userService: UsersService) {}
+  formGroup!: FormGroup;
+  constructor(
+    private userService: UsersService,
+    private paymentService: PaymentService,
+    private fb: FormBuilder,
+    private modalRef: NzModalRef
+  ) {}
   ngOnInit() {
+    this.initForm();
     this.getAllUsers();
+  }
+
+  initForm() {
+    this.formGroup = this.fb.group({
+      memberId: [null, [MyValidators.customRequired('Member')]],
+      // "amount": [0,[[MyValidators.customRequired('Amount')]]],
+      paymentType: [2, { nonNullable: true }],
+      paymentDate: [
+        new Date(),
+        { nonNullable: true },
+        [MyValidators.customRequired('Payment Date')],
+      ],
+    });
   }
   getAllUsers() {
     this.userService.getUsers().subscribe({
       next: (res) => {
         this.userList = res;
+      },
+    });
+  }
+
+  makePayment() {
+    this.paymentService.makePaymennt(this.formGroup.value).subscribe({
+      next: (res) => {
+        this.modalRef.close();
       },
     });
   }

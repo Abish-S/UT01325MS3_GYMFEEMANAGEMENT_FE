@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="title">Member Report</div>
+
+  <br />
+  <nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Member ID</th>
+        <th>Full Name</th>
+        <th>Payment Month</th>
+        <th>Training Programs</th>
+        <th>Amount</th>
+        <th>Next Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.memberId }}</td>
+        <td>{{ data.fullName | titlecase }}</td>
+        <td>{{ data.lastPaymentDate | date : "yyyy-MM-dd" }}</td>
+        <td>{{ data.trainingPrograms }}</td>
+        <td>{{ data.totalPaid | number : ".2-2" }}</td>
+        <td>{{ data.nextDueDate | date : "yyyy-MM-dd" }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

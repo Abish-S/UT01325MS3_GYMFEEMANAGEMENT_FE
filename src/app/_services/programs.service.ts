@@ -7,6 +7,7 @@ import {
 } from '../_models/trainingProgram';
 import { catchError } from 'rxjs';
 import { CommonService } from './common.service';
+import { trainingProgramReport } from '../_models/trainingProgramReport';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,9 @@ export class ProgramsService {
         return this.common.catchError(err);
       })
     );
+  }
+  getTrainingProgramReport() {
+    const URL = environment.GET_TRAINING_REPORT;
+    return this.http.get<trainingProgramReport>(URL);
   }
 }

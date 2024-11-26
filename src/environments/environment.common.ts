@@ -7,4 +7,11 @@ export const commonEnvironment = {
 
   GET_ALL_TRAINING_PROGRAMS: BASE_URL + '/api/TrainingPrograms',
   SAVE_TRAINING_PROGRAM: BASE_URL + '/api/TrainingPrograms',
+
+  MAKE_PAYMENT: BASE_URL + '/api/Payments',
+  GET_ALL_PAYMENTS: BASE_URL + '/api/Payments',
+
+  GET_MEMBER_REPORT: BASE_URL + '/api/Members/report',
+  GET_PAYMENT_REPORT: BASE_URL + '/api/Payments/report',
+  GET_TRAINING_REPORT: BASE_URL + '/api/TrainingPrograms/report',
 };

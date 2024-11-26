@@ -17,26 +17,18 @@
       <tr>
         <th>Member ID</th>
         <th>Full Name</th>
-        <th>NIC</th>
-        <th>Contact Details</th>
-        <th>Joined Date</th>
-        <th>Training Programs</th>
-        <th>Action</th>
+        <th>Payment Month</th>
+        <th>Amount</th>
+        <th>Due Date</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
         <td>{{ data.memberId }}</td>
-        <td>{{ data.fullName }}</td>
-        <td>{{ data.nic }}</td>
-        <td>{{ data.contactDetails }}</td>
-        <td>{{ data.registrationDate | date : "medium" }}</td>
-        <td>
-          <ng-container *ngFor="let program of data.selectedTrainingPrograms"
-            >{{ program.programName }} <br
-          /></ng-container>
-        </td>
-        <td></td>
+        <td>{{ data.memberFullName }}</td>
+        <td>{{ data.paymentDate | date : "MMMM" }}</td>
+        <td>{{ data.amount | number : ".2-2" }}</td>
+        <td>{{ data.dueDate | date : "yyyy-MM-dd" }}</td>
       </tr>
     </tbody>
   </nz-table>

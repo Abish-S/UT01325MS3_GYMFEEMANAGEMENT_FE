@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="title">Payment Report</div>
+
+  <br />
+  <nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Member ID</th>
+        <th>Full Name</th>
+        <th>Payment Month</th>
+        <th>Payment Type</th>
+        <th>Amount</th>
+        <th>Next Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.memberId }}</td>
+        <td>{{ data.memberFullName | titlecase }}</td>
+        <td>{{ data.paymentDate | date : "yyyy-MM-dd" }}</td>
+        <td>{{ data.paymentType }}</td>
+        <td>{{ data.amount | number : ".2-2" }}</td>
+        <td>{{ data.dueDate | date : "yyyy-MM-dd" }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
