@@ -5,4 +5,5 @@ export interface loginRequest {
 export interface loginResponse {
   success: boolean;
   token: string;
+  isAdmin: boolean;
 }

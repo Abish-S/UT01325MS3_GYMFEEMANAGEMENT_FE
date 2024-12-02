@@ -6,7 +6,13 @@
         <span nz-icon nzType="user"></span>
         <span>Users</span>
       </li>
-      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="program">
+      <li
+        *ngIf="dataService.isAdmin"
+        nz-menu-item
+        nzMatchRouter
+        nzMatchRouterExact
+        routerLink="program"
+      >
         <span nz-icon><i class="fa-solid fa-person-running"></i></span>
         <span>Training Program</span>
       </li>
@@ -15,7 +21,13 @@
         <span>Fee Management</span>
       </li>
 
-      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="report">
+      <li
+        *ngIf="dataService.isAdmin"
+        nz-menu-item
+        nzMatchRouter
+        nzMatchRouterExact
+        routerLink="report"
+      >
         <span nz-icon nzType="bar-chart"></span>
         <span>Report</span>
       </li>
