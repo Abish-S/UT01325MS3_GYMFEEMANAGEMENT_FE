@@ -48,6 +48,7 @@ export class AddUserComponent {
     this.formGroup = this.fb.group({
       fullName: ['', [MyValidators.customRequired('Full Name')]],
       nic: ['', [MyValidators.customRequired('NIC')]],
+      password: ['', [MyValidators.customRequired('Password')]],
       contactDetails: ['', [MyValidators.customRequired('Contact No')]],
       selectedTrainingProgramIds: [
         null,

@@ -31,10 +31,31 @@
       ></span>
 
       <div class="notification">
-        <nz-badge [nzCount]="5">
-          <i class="fa-solid fa-bell"></i>
-        </nz-badge>
-        <i class="fa-solid fa-circle-user"></i>
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+          <nz-badge [nzCount]="alerts.length">
+            <i class="fa-solid fa-bell"></i>
+          </nz-badge>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <div class="bg-white p-2">
+            <nz-list nzBordered>
+              @if (alerts.length > 0) { @for (item of alerts; track item) {
+              <nz-list-item>
+                <span nz-typography>{{ item.memberId }}</span>
+                {{ item.message }}
+              </nz-list-item>
+              } }@else {
+              <nz-empty></nz-empty>
+              }
+            </nz-list>
+          </div>
+        </nz-dropdown-menu>
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu1">
+          <i class="fa-solid fa-circle-user"></i>
+          <nz-dropdown-menu #menu1="nzDropdownMenu">
+            <div class="bg-white p-2" (click)="logout()">logout</div>
+          </nz-dropdown-menu>
+        </a>
       </div>
     </nz-header>
     <nz-content>

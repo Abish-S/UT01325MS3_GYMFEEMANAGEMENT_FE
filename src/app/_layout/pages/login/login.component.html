@@ -1,5 +1,5 @@
 <div class="content">
-  <form nz-form>
+  <form nz-form [formGroup]="formGroup" (ngSubmit)="login()">
     <p class="title">Gym Management</p>
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your username!">
@@ -7,7 +7,7 @@
           <input
             type="text"
             nz-input
-            formControlName="userName"
+            formControlName="username"
             placeholder="Username"
           />
         </nz-input-group>
@@ -30,7 +30,7 @@
         nz-button
         class="login-form-button login-form-margin"
         [nzType]="'primary'"
-        (click)="login()"
+        type="submit"
       >
         Log in
       </button>
