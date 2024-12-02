@@ -11,7 +11,7 @@ export class TokenService {
     localStorage.setItem(TOKEN, token);
   }
   getToken(): string {
-    return JSON.stringify(localStorage.getItem(TOKEN));
+    return JSON.parse(JSON.stringify(localStorage.getItem(TOKEN)));
   }
 
   saveRole(role: boolean) {

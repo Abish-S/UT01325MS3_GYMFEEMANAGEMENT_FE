@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CommonService } from '../../../_services/common.service';
 import { DataService } from '../../../_services/data.service';
 import { TokenService } from '../../../_services/token.service';
+import { UsersService } from '../../../_services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +19,13 @@ export class DashboardComponent {
     private alertService: AlertService,
     private router: Router,
     protected dataService: DataService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UsersService
   ) {}
   ngOnInit() {
     this.getAllAlerts();
     this.dataService.isAdmin = this.tokenService.getRole();
+    this.getCurrentUser();
   }
   getAllAlerts() {
     this.alertService.getAllAlerts().subscribe({
@@ -32,6 +35,10 @@ export class DashboardComponent {
         }
       },
     });
+  }
+
+  getCurrentUser() {
+    this.userService.getCurrentUser().subscribe();
   }
   logout() {
     localStorage.clear();

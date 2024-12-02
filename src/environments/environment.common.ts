@@ -18,4 +18,6 @@ export const commonEnvironment = {
   GET_TRAINING_REPORT: BASE_URL + '/api/TrainingPrograms/report',
 
   GET_ALL_ALERTS: BASE_URL + '/api/Alerts/reminders',
+
+  GET_CURRENT_USER: BASE_URL + '/api/Members/current',
 };

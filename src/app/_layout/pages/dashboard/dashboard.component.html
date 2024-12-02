@@ -2,7 +2,13 @@
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="user">
+      <li
+        *ngIf="dataService.isAdmin"
+        nz-menu-item
+        nzMatchRouter
+        nzMatchRouterExact
+        routerLink="user"
+      >
         <span nz-icon nzType="user"></span>
         <span>Users</span>
       </li>

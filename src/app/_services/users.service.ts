@@ -27,4 +27,9 @@ export class UsersService {
     const URL = environment.GET_MEMBER_REPORT;
     return this.http.get<memberReport>(URL);
   }
+
+  getCurrentUser() {
+    const URL = environment.GET_CURRENT_USER;
+    return this.http.get(URL);
+  }
 }
