@@ -3,6 +3,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { MakePaymentComponent } from '../make-payment/make-payment.component';
 import { PaymentService } from '../../../../_services/payment.service';
 import { getAllPaymentResponse } from '../../../../_models/payment';
+import { DataService } from '../../../../_services/data.service';
 
 @Component({
   selector: 'app-fees',
@@ -14,7 +15,8 @@ export class FeesComponent {
 
   constructor(
     private modalService: NzModalService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    protected dataService: DataService
   ) {}
   ngOnInit() {
     this.getAllPayments();

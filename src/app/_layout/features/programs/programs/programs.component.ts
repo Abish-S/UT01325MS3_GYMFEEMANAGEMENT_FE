@@ -4,6 +4,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProgramsService } from '../../../../_services/programs.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AddNewProgramComponent } from '../add-new-program/add-new-program.component';
+import { DataService } from '../../../../_services/data.service';
 
 @Component({
   selector: 'app-programs',
@@ -12,10 +13,13 @@ import { AddNewProgramComponent } from '../add-new-program/add-new-program.compo
 })
 export class ProgramsComponent {
   listOfData: trainingProgram[] = [];
+  defaultData: trainingProgram[] = [];
+  search = '';
   constructor(
     private modalService: NzModalService,
     private programService: ProgramsService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    protected dataService: DataService
   ) {}
 
   ngOnInit() {
@@ -32,11 +36,16 @@ export class ProgramsComponent {
       this.getAllProgram();
     });
   }
-
+  getFilteredData(event: any) {
+    this.listOfData = this.defaultData.filter((x) =>
+      x.programName.toLowerCase().includes(event.toLowerCase())
+    );
+  }
   getAllProgram() {
     this.programService.getAllTrainingPrograms().subscribe({
       next: (res) => {
         this.listOfData = res;
+        this.defaultData = res;
       },
     });
   }

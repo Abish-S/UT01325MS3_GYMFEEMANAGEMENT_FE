@@ -7,7 +7,12 @@
       <ng-template #suffixIconSearch>
         <span nz-icon nzType="search"></span>
       </ng-template> -->
-    <button nz-button nzType="primary" (click)="makePayment()">
+    <button
+      nz-button
+      nzType="primary"
+      *ngIf="dataService.isAdmin"
+      (click)="makePayment()"
+    >
       Make Payment
     </button>
   </div>

@@ -2,23 +2,11 @@
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li
-        *ngIf="dataService.isAdmin"
-        nz-menu-item
-        nzMatchRouter
-        nzMatchRouterExact
-        routerLink="user"
-      >
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="user">
         <span nz-icon nzType="user"></span>
         <span>Users</span>
       </li>
-      <li
-        *ngIf="dataService.isAdmin"
-        nz-menu-item
-        nzMatchRouter
-        nzMatchRouterExact
-        routerLink="program"
-      >
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact routerLink="program">
         <span nz-icon><i class="fa-solid fa-person-running"></i></span>
         <span>Training Program</span>
       </li>
@@ -49,6 +37,7 @@
       ></span>
 
       <div class="notification">
+        <span>{{ currentUser?.fullName }}</span>
         <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
           <nz-badge [nzCount]="alerts.length">
             <i class="fa-solid fa-bell"></i>

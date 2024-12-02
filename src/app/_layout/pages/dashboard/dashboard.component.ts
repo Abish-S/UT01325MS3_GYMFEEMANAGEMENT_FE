@@ -6,6 +6,7 @@ import { CommonService } from '../../../_services/common.service';
 import { DataService } from '../../../_services/data.service';
 import { TokenService } from '../../../_services/token.service';
 import { UsersService } from '../../../_services/users.service';
+import { currentUser } from '../../../_models/user';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ import { UsersService } from '../../../_services/users.service';
 export class DashboardComponent {
   isCollapsed = false;
   alerts: alert[] = [];
+  currentUser!: currentUser | null;
   constructor(
     private alertService: AlertService,
     private router: Router,
@@ -38,7 +40,11 @@ export class DashboardComponent {
   }
 
   getCurrentUser() {
-    this.userService.getCurrentUser().subscribe();
+    this.userService.getCurrentUser().subscribe({
+      next: (res) => {
+        if (res) this.currentUser = res.data;
+      },
+    });
   }
   logout() {
     localStorage.clear();

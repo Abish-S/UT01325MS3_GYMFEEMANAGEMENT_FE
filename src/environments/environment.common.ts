@@ -4,6 +4,7 @@ export const commonEnvironment = {
   LOGIN: BASE_URL + '/api/auth/login',
 
   ADD_USER: BASE_URL + '/api/Members',
+  UPDATE_USER: BASE_URL + '/api/Members/',
   GET_ALL_USERS: BASE_URL + '/api/Members',
   DELETE_USER: BASE_URL + '/api/Members/',
 

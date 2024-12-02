@@ -6,6 +6,7 @@ import { MyValidators } from '../../../../_validators/custom-validator';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ProgramsService } from '../../../../_services/programs.service';
 import { trainingProgram } from '../../../../_models/trainingProgram';
+import { user } from '../../../../_models/user';
 
 @Component({
   selector: 'app-add-user',
@@ -15,6 +16,7 @@ import { trainingProgram } from '../../../../_models/trainingProgram';
 export class AddUserComponent {
   formGroup!: FormGroup;
   loading = false;
+  user!: user;
   programList: trainingProgram[] = [];
 
   feeTypes = [
@@ -43,9 +45,24 @@ export class AddUserComponent {
 
   ngOnInit() {
     this.getAllProgram();
+    if (this.user) {
+      this.formGroup.patchValue({
+        fullName: this.user.fullName,
+        nic: this.user.nic,
+        memberId: this.user.memberId,
+        contactDetails: this.user.contactDetails,
+        selectedTrainingProgramIds: this.user.selectedTrainingPrograms.map(
+          (x) => x.trainingProgramId
+        ),
+      });
+      this.formGroup.get('nic')?.disable();
+      this.formGroup.get('password')?.setValidators([]);
+      this.formGroup.get('password')?.updateValueAndValidity();
+    }
   }
   initForm() {
     this.formGroup = this.fb.group({
+      memberId: [],
       fullName: ['', [MyValidators.customRequired('Full Name')]],
       nic: ['', [MyValidators.customRequired('NIC')]],
       password: ['', [MyValidators.customRequired('Password')]],
@@ -85,16 +102,29 @@ export class AddUserComponent {
       return;
     } else {
       this.loading = true;
-      this.userService.addUser(this.formGroup.value).subscribe({
-        next: (res) => {
-          this.loading = false;
-          this.notification.success('Success', res.message);
-          this.modalRef.close();
-        },
-        error: () => {
-          this.loading = false;
-        },
-      });
+      if (this.user) {
+        this.userService.updateUser(this.formGroup.value).subscribe({
+          next: (res) => {
+            this.loading = false;
+            this.notification.success('Success', res.message);
+            this.modalRef.close();
+          },
+          error: () => {
+            this.loading = false;
+          },
+        });
+      } else {
+        this.userService.addUser(this.formGroup.value).subscribe({
+          next: (res) => {
+            this.loading = false;
+            this.notification.success('Success', res.message);
+            this.modalRef.close();
+          },
+          error: () => {
+            this.loading = false;
+          },
+        });
+      }
     }
   }
 }

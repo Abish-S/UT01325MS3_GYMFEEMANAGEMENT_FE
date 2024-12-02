@@ -2,12 +2,23 @@
   <div class="title">Training Programs</div>
   <div nz-row nzJustify="space-between">
     <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
+      <input
+        type="text"
+        nz-input
+        [(ngModel)]="search"
+        (ngModelChange)="getFilteredData($event)"
+        placeholder="input search text"
+      />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <span nz-icon nzType="search"></span>
     </ng-template>
-    <button nz-button nzType="primary" (click)="openAddProgram()">
+    <button
+      nz-button
+      *ngIf="dataService.isAdmin"
+      nzType="primary"
+      (click)="openAddProgram()"
+    >
       Add New Training Program
     </button>
   </div>

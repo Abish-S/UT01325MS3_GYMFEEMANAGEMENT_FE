@@ -2,12 +2,23 @@
   <div class="title">Users</div>
   <div nz-row nzJustify="space-between">
     <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input type="text" nz-input placeholder="input search text" />
+      <input
+        type="text"
+        nz-input
+        [(ngModel)]="search"
+        (ngModelChange)="getFilteredData($event)"
+        placeholder="input search text"
+      />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <span nz-icon nzType="search"></span>
     </ng-template>
-    <button nz-button nzType="primary" (click)="openAddUser()">
+    <button
+      nz-button
+      nzType="primary"
+      *ngIf="dataService.isAdmin"
+      (click)="openAddUser()"
+    >
       Add new user
     </button>
   </div>
@@ -21,7 +32,7 @@
         <th>Contact Details</th>
         <th>Joined Date</th>
         <th>Training Programs</th>
-        <th>Action</th>
+        <th *ngIf="dataService.isAdmin">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -36,7 +47,10 @@
             >{{ program.programName }} <br
           /></ng-container>
         </td>
-        <td>
+        <td *ngIf="dataService.isAdmin">
+          <a (click)="openEditUser(data)"
+            ><i class="fa-solid fa-pen-to-square"></i></a
+          >&nbsp;
           <a (click)="deleteUser(data.memberId)"
             ><i class="fa-solid fa-trash"></i
           ></a>
