@@ -10,6 +10,8 @@ export const commonEnvironment = {
 
   GET_ALL_TRAINING_PROGRAMS: BASE_URL + '/api/TrainingPrograms',
   SAVE_TRAINING_PROGRAM: BASE_URL + '/api/TrainingPrograms',
+  UPDATE_TRAINING_PROGRAM: BASE_URL + '/api/TrainingPrograms/',
+  DELETE_PROGRAM: BASE_URL + '/api/TrainingPrograms/',
 
   MAKE_PAYMENT: BASE_URL + '/api/Payments',
   GET_ALL_PAYMENTS: BASE_URL + '/api/Payments',

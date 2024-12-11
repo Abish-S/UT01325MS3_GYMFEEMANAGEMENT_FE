@@ -49,4 +49,25 @@ export class ProgramsComponent {
       },
     });
   }
+
+  deleteProgram(id: number) {
+    this.programService.deleteProgram(id).subscribe({
+      next: (res) => {
+        this.notification.success('Deleted', 'Successfully Deleted');
+        this.getAllProgram();
+      },
+    });
+  }
+  openEditProgram(data: trainingProgram) {
+    const modal = this.modalService.create({
+      nzTitle: 'Edit Program',
+      nzContent: AddNewProgramComponent,
+      nzFooter: null,
+      nzCentered: true,
+    });
+    modal.componentInstance!.trainingProgram = data;
+    modal.afterClose.subscribe((res) => {
+      this.getAllProgram();
+    });
+  }
 }

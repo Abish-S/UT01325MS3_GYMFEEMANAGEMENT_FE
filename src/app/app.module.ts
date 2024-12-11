@@ -18,18 +18,18 @@ import { LoginComponent } from './_layout/pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './_layout/pages/dashboard/dashboard.component';
 import { authInterceptor } from './_jwt/auth.interceptor';
+import { ProfileComponent } from './_layout/pages/profile/profile.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    SharedModule,
-    HttpClientModule,
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    ProfileComponent,
   ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, HttpClientModule],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     provideAnimationsAsync(),

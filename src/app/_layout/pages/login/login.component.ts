@@ -50,7 +50,7 @@ export class LoginComponent {
           this.token.saveToken(res.token);
           this.token.saveRole(res.isAdmin);
           this.notification.success('Success', 'Login successfuly');
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/profile');
         },
         error: () => {
           this.loading = false;

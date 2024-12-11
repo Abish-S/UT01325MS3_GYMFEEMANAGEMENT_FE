@@ -39,4 +39,6 @@ export interface currentUser {
   contactDetails: string;
   registrationDate: Date;
   isAdmin: boolean;
+  memberId: string;
+  memberTrainingPrograms: programs[];
 }

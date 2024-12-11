@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './_layout/pages/login/login.component';
 import { DashboardComponent } from './_layout/pages/dashboard/dashboard.component';
 import { authGuard } from './_guard/auth.guard';
+import { ProfileComponent } from './_layout/pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -43,9 +44,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
         pathMatch: 'full',
         path: '',
-        redirectTo: 'user',
+        redirectTo: 'profile',
       },
     ],
   },

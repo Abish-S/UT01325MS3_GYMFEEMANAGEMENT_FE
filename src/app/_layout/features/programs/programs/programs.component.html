@@ -27,17 +27,37 @@
     <thead>
       <tr>
         <th>Training Program ID</th>
+        <th>Image</th>
         <th>Program Name</th>
         <th>Price</th>
         <th>Description</th>
+        <th *ngIf="dataService.isAdmin">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
         <td>{{ data.trainingProgramId }}</td>
+        <td>
+          <img
+            nz-image
+            width="50px"
+            height="50px"
+            *ngIf="data.imagePath"
+            [nzSrc]="data.imagePath"
+            alt=""
+          />
+        </td>
         <td>{{ data.programName }}</td>
         <td>{{ data.price | number : ".2-2" }}</td>
         <td>{{ data.description }}</td>
+        <td *ngIf="dataService.isAdmin">
+          <a (click)="openEditProgram(data)"
+            ><i class="fa-solid fa-pen-to-square"></i></a
+          >&nbsp;
+          <a (click)="deleteProgram(data.trainingProgramId)"
+            ><i class="fa-solid fa-trash"></i
+          ></a>
+        </td>
       </tr>
     </tbody>
   </nz-table>

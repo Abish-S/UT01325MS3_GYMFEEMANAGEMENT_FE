@@ -26,8 +26,20 @@ export class ProgramsService {
       })
     );
   }
+  update(data: trainingProgramRequest) {
+    const URL = environment.UPDATE_TRAINING_PROGRAM + data.id;
+    return this.http.put(URL, data).pipe(
+      catchError((err) => {
+        return this.common.catchError(err);
+      })
+    );
+  }
   getTrainingProgramReport() {
     const URL = environment.GET_TRAINING_REPORT;
     return this.http.get<trainingProgramReport>(URL);
+  }
+  deleteProgram(id: number) {
+    const URL = environment.DELETE_PROGRAM + id;
+    return this.http.delete(URL);
   }
 }
